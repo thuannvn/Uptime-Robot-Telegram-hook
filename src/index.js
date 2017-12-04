@@ -11,6 +11,8 @@ app.get("/", (req,res) => {
 });
 
 app.post("/", jsonParser, (req, res) => {
+  console.log(req);
+  
   if (!req.body || req.body.key !== config.hookKey) return res.sendStatus(400)
   telegramEmitter(config.telegramBotToken, config.telegramChatId, req.body);
   res.sendStatus(200);
